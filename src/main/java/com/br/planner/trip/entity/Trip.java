@@ -1,4 +1,4 @@
-package com.br.planner.entity;
+package com.br.planner.trip.entity;
 
 import jakarta.persistence.*;
 
