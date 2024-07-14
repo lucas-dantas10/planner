@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api")
 @Slf4j
@@ -24,7 +27,10 @@ public class TripGetController {
     }
 
     @GetMapping("/trips/{tripId}")
-    public ResponseEntity<String> createTrip(@RequestParam String tripId) {
-        return ResponseEntity.ok(tripId);
+    public ResponseEntity<Trip> getTripDatails(@PathVariable UUID tripId) {
+        Optional<Trip> trip = this.tripRepository.findById(tripId);
+
+        return trip.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
