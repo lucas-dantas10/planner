@@ -1,15 +1,20 @@
 package com.br.planner.trip.entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+
 import com.br.planner.trip.dto.CreateTripDto;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 @Entity
 @Table(name = "trips")
@@ -33,7 +38,7 @@ public class Trip {
     private LocalDateTime endsAt;
 
     @Column(name = "is_confirmed", nullable = false)
-    private boolean isConfirmed;
+    private Boolean isConfirmed;
 
     @Column(name = "owner_name", nullable = false)
     private String ownerName;
@@ -41,11 +46,11 @@ public class Trip {
     @Column(name = "owner_email", nullable = false)
     private String ownerEmail;
 
-    public Trip(CreateTripDto dto) {
+    public Trip(CreateTripDto dto){
         this.destination = dto.destination();
         this.isConfirmed = false;
-        this.ownerName = dto.owner_name();
         this.ownerEmail = dto.owner_email();
+        this.ownerName = dto.owner_name();
         this.startsAt = LocalDateTime.parse(dto.starts_at(), DateTimeFormatter.ISO_DATE_TIME);
         this.endsAt = LocalDateTime.parse(dto.ends_at(), DateTimeFormatter.ISO_DATE_TIME);
     }
