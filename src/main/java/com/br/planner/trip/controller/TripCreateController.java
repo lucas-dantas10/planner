@@ -1,7 +1,7 @@
 package com.br.planner.trip.controller;
 
 import com.br.planner.participant.service.ParticipantServiceInterface;
-import com.br.planner.trip.dto.CreateTripDto;
+import com.br.planner.trip.dto.TripRequestDto;
 import com.br.planner.trip.dto.ResponseTripDto;
 import com.br.planner.trip.entity.Trip;
 import com.br.planner.trip.repository.TripRepository;
@@ -24,7 +24,7 @@ public class TripCreateController {
     }
 
     @PostMapping("/trips")
-    public ResponseEntity<ResponseTripDto> createTrip(@RequestBody CreateTripDto dto) {
+    public ResponseEntity<ResponseTripDto> createTrip(@RequestBody TripRequestDto dto) {
         Trip newTrip = new Trip(dto);
 
         this.tripRepository.save(newTrip);

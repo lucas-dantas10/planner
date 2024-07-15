@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-import com.br.planner.trip.dto.CreateTripDto;
+import com.br.planner.trip.dto.TripRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,7 +46,7 @@ public class Trip {
     @Column(name = "owner_email", nullable = false)
     private String ownerEmail;
 
-    public Trip(CreateTripDto dto){
+    public Trip(TripRequestDto dto){
         this.destination = dto.destination();
         this.isConfirmed = false;
         this.ownerEmail = dto.owner_email();
