@@ -29,8 +29,6 @@ public class TripUpdateController {
             return ResponseEntity.notFound().build();
         }
 
-        System.out.println("tesete");
-
         Trip rawTrip = trip.get();
         rawTrip.setDestination(dto.destination());
         rawTrip.setEndsAt(LocalDateTime.parse(dto.ends_at(), DateTimeFormatter.ISO_DATE_TIME));
