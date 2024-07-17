@@ -29,7 +29,7 @@ public class TripCreateController {
 
         this.tripRepository.save(newTrip);
 
-        this.participantService.registerPartipantsToTrip(dto.emails_to_invite(), newTrip.getId());
+        this.participantService.registerParticipantsToTrip(dto.emails_to_invite(), newTrip);
 
         return ResponseEntity.ok(new ResponseTripDto(newTrip.getId()));
     }
