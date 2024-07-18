@@ -1,6 +1,7 @@
 package com.br.planner.participant.service;
 
 import com.br.planner.participant.dto.ParticipantCreateResponse;
+import com.br.planner.participant.dto.ParticipantDto;
 import com.br.planner.participant.dto.ParticipantRequestPayload;
 import com.br.planner.participant.entity.Participant;
 import com.br.planner.participant.repository.ParticipantRepository;
@@ -51,5 +52,17 @@ public class ParticipantService implements ParticipantServiceInterface {
     @Override
     public void triggerConfirmationEmailToParticipant(String email) {
 
+    }
+
+    @Override
+    public List<ParticipantDto> getAllParticipantsFromTrip(UUID tripId) {
+        return this.participantRepository.findByTripId(tripId)
+                .stream()
+                .map(participant -> new ParticipantDto(
+                        participant.getId(),
+                        participant.getName(),
+                        participant.getEmail(),
+                        participant.getIsConfirmed()))
+                .toList();
     }
 }
